@@ -95,15 +95,39 @@ export AWS_SESSION_TOKEN=IQo...  # If using temporary credentials
 uv run python main.py raas/prod/2024-01-01/ raas/staging/2024-01-01/ --bucket my-data-bucket
 ```
 
+## Testing
+
+Test the comparison functionality locally without S3:
+
+```bash
+# Run all tests (create data, test, and show results)
+uv run python test_compare.py --all
+
+# Or run individual steps:
+uv run python test_compare.py --create    # Create test data
+uv run python test_compare.py --show      # Show sample data
+uv run python test_compare.py --test      # Run comparison tests
+uv run python test_compare.py --cleanup   # Remove test data
+```
+
+The test suite includes:
+1. **Identical files** - Verifies that identical data matches
+2. **Different values** - Tests detection of changed cell values
+3. **Different columns** - Tests detection of column mismatches
+4. **Different shapes** - Tests detection of row count differences
+
 ## Project Structure
 
 ```
 .
 ├── main.py              # Main comparison script
+├── test_compare.py      # Test suite with sample data
 ├── pyproject.toml       # Project dependencies (uv)
 ├── .env                 # Configuration file (not in git)
 ├── .gitignore          # Git ignore patterns
-└── README.md           # This file
+├── README.md           # This file
+├── temp_download/      # Downloaded S3 files (not in git)
+└── test_data/          # Generated test files (not in git)
 ```
 
 ## Requirements
