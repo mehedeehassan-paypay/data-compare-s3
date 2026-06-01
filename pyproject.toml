@@ -1,0 +1,14 @@
+[project]
+name = "raas-compare"
+version = "0.1.0"
+description = "S3 Parquet File Comparison Tool - Downloads and compares parquet files from two S3 directories"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.26.0",
+    "pandas>=2.0.0",
+    "pyarrow>=12.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+raas-compare = "main:main"
